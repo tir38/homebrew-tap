@@ -6,6 +6,7 @@ class Adbx < Formula
   license ""
 
   depends_on "ruby"
+  depends_on "bash-completion@2"  
 
   def install
     # Install the whole project into libexec so the script can reference other files
@@ -18,6 +19,9 @@ class Adbx < Formula
     # Expose the command on PATH.
     # This runs libexec/"ax" directly (shebang in ax should be `#!/usr/bin/env ruby`).
     bin.write_exec_script libexec/"ax"
+
+    # Install ADBX's completion file into Homebrew’s completion dir
+    bash_completion.install "ax_completion.bash"
   end
 
   test do
