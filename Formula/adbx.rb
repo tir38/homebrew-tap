@@ -22,6 +22,15 @@ class Adbx < Formula
 	bash_completion.install libexec/"ax_completion.bash" => "ax"
   end
 
+
+  def caveats
+  	# even though bash-completion@2 provides this caveat, we duplicate it here JIC
+    <<~EOS
+      Add the following line to your ~/.bash_profile:
+        [[ -r "#{etc}/profile.d/bash_completion.sh" ]] && . "#{etc}/profile.d/bash_completion.sh"
+    EOS
+  end
+
   test do
     system bin/"ax", "help"
   end
